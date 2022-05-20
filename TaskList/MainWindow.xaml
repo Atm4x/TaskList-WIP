@@ -1,0 +1,68 @@
+﻿<Window x:Class="TaskList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskList"
+        xmlns:views="clr-namespace:TaskList.Views.Models"
+        mc:Ignorable="d"
+        Title="TaskList" Height="500" Width="700">
+    <Window.DataContext>
+        <views:MainViewModel/>
+    </Window.DataContext>
+    <Grid Background="#26253b">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" 
+                Grid.Column="2" 
+                Background="#15151f">
+                <ContentControl x:Name="ContentC" 
+                                Content="{Binding ContentView}"
+                                Margin="5"/>
+        </Border>
+        
+        <Border VerticalAlignment="Stretch" 
+                Background="#1f1f2e"
+                
+                Grid.Column="0" 
+                Grid.Row="0" >
+                <TextBlock Foreground="WhiteSmoke" 
+                        TextAlignment="Center"
+                        FontSize="25"
+                        Text="TaskList"
+                        VerticalAlignment="Center"
+                        FontFamily="Century Gothic"/>
+        </Border>
+        
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <RadioButton Content="Ближайшее"
+                         Style="{StaticResource MenuItem}"
+                         Height="40"
+                         FontSize="14"
+                         IsChecked="True"
+                         Command="{Binding NearViewCommand}"/>
+            
+            <RadioButton Content="Дневные задачи"
+                         Style="{StaticResource MenuItem}"
+                         Height="40"
+                         FontSize="14"
+                         Command="{Binding TodayViewCommand}"/>
+            
+            <RadioButton Content="Задачи на месяц"
+                         Style="{StaticResource MenuItem}"
+                         Height="40"
+                         FontSize="14"
+                         Command="{Binding WeeklyViewCommand}"/>
+        </StackPanel>
+        
+        <Border Grid.Column="1" Grid.RowSpan="2" Background="#02020a"></Border>
+    </Grid>
+</Window>
